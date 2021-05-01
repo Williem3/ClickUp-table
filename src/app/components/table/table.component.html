@@ -1,0 +1,19 @@
+<section class="tableArea">
+    <table class="table" cdkDropList [cdkDropListData]="this.moviesInArray  " cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+        <tr>
+            <th cdkDrag cdkDragLockAxis="x" *ngFor="let header of table" id="{{header.title}}" (click)="sort(header.title)">
+                {{header.title}}
+            </th>
+        </tr>
+        
+        <tr cdkDropList *ngFor="let movie of this.moviesInArray; let i = index" class="row" [ngClass]="{'light': i % 2 === 0, 'dark': i % 2 !== 0}">
+            <td *ngFor="let cell of movie">
+                {{cell}}
+            </td>
+        </tr>
+
+    </table>
+
+
+</section>
+
