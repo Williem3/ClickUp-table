@@ -1,18 +1,57 @@
 <section class="tableArea">
-    <table class="table" cdkDropList [cdkDropListData]="this.moviesInArray  " cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+    <table class="table" border="0" cellspacing="0" cellpadding="0" 
+    cdkDropList [cdkDropListData]="this.moviesInArray  " cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
         <tr>
-            <th cdkDrag cdkDragLockAxis="x" *ngFor="let header of table" id="{{header.title}}" (click)="sort(header.title)">
+            <th cdkDrag cdkDragLockAxis="x" *ngFor="let header of table; let i = index" id="{{header.title}}" 
+            (click)="sort(header.title, i)">
                 {{header.title}}
             </th>
         </tr>
         
-        <tr cdkDropList *ngFor="let movie of this.moviesInArray; let i = index" class="row" [ngClass]="{'light': i % 2 === 0, 'dark': i % 2 !== 0}">
+        <tr cdkDropList *ngFor="let movie of this.moviesInArray; let i = index" class="row" 
+        [ngClass]="{'light': i % 2 === 0, 'dark': i % 2 !== 0}">
             <td *ngFor="let cell of movie">
                 {{cell}}
             </td>
         </tr>
 
     </table>
+    <div class="paginate">
+        <div class="backSection">
+            <button *ngIf="this.currentPage > 1 || this.displaySecondList === true" (click)="goFirst()">
+                <span class="material-icons">
+                    chevron_left
+                </span>
+                <span class="material-icons">
+                    chevron_left
+                </span>
+            </button>
+
+            <button *ngIf="this.currentPage > 1 || this.displaySecondList === true" (click)="previousPage()">
+                <span class="material-icons">
+                    chevron_left
+                </span>
+            </button>
+        </div>
+
+        <div class="forwardSection">
+            <button *ngIf="this.currentPage < this.totalPages || this.displaySecondList === false "(click)="nextPage()">
+                <span class="material-icons">
+                    chevron_right
+                </span>
+            </button>
+
+            <button *ngIf="this.currentPage < this.totalPages || this.displaySecondList === false "(click)="goLast()">
+                <span class="material-icons">
+                    chevron_right
+                </span>
+                <span class="material-icons">
+                    chevron_right
+                </span>
+            </button>
+
+        </div>
+    </div>
 
 
 </section>

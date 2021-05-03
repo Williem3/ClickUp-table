@@ -11,6 +11,9 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
   retrieveLatest() {
-    return this.http.get(`${this.url}/movie/popular${this.apiKey}`);
+    return this.http.get(`${this.url}/movie/popular${this.apiKey}&language=en-US`);
+  }
+  retrieveLatestPagination(currentPage) {
+    return this.http.get(`${this.url}/movie/popular${this.apiKey}&language=en-US&page=${currentPage}`);
   }
 }
