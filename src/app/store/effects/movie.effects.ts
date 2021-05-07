@@ -17,7 +17,7 @@ export class MovieEffects {
             mergeMap(() =>
                 this.service.retrieveLatest(this.service.page$).pipe(
                     map((movies: Movie) => {
-                        return MovieActions.loadMoviesSuccessful({Movies: movies});
+                        return MovieActions.loadMoviesSuccessful({movies: movies});
                     }),
                     catchError(() => EMPTY)
                 )

@@ -1,4 +1,4 @@
-import { Movie } from 'src/app/types/movie.interface';
+import {Movie} from 'src/app/types/movie.interface';
 import {pageActionTypes} from './../../store/actions/movie-page.actions';
 import {MovieState} from './../../store/states/movie.state';
 import {Observable} from 'rxjs';
@@ -6,6 +6,7 @@ import {Store} from '@ngrx/store';
 import {Component, OnInit} from '@angular/core';
 import * as MovieActions from '../../store/actions/movie.actions';
 import * as MoviePageActions from '../../store/actions/movie-page.actions';
+import * as ConvertMovieActions from '../../store/actions/movie-convert.actions';
 
 @Component({
     selector: 'app-table',
@@ -31,6 +32,9 @@ export class TableComponent implements OnInit {
                 this.store.dispatch(
                     MoviePageActions.setTotalPages({totalPages: data.movies.total_pages})
                 );
+                this.store.dispatch({
+                    type: ConvertMovieActions.movieConvertActionTypes.ConvertToArray,
+                });
             });
     }
     onPrevious() {

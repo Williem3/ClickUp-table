@@ -5,14 +5,14 @@ import * as MovieActions from '../actions/movie.actions';
 const movieReducer = createReducer(
     movieInitialState,
     on(MovieActions.loadMovies, (state) => ({...state})),
-    on(MovieActions.loadMoviesSuccessful, (state, {Movies}) => {
+    on(MovieActions.loadMoviesSuccessful, (state, {movies}) => {
         return {
             ...state,
             movies: {
-                total_pages: Movies.total_pages,
-                total_results: Movies.total_results,
-                page: Movies.page,
-                results: Movies.results,
+                total_pages: movies.total_pages,
+                total_results: movies.total_results,
+                page: movies.page,
+                results: movies.results,
             },
         };
     })

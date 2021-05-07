@@ -3,7 +3,7 @@ export interface Movie {
     page: number,
     total_pages: number,
     total_results: number,
-    results: Movie[]
+    results: MovieResults[]
 }
 
 export interface MovieResults {
@@ -11,4 +11,8 @@ export interface MovieResults {
     original_language: string;
     release_date: string;
     vote_average: number;
+}
+
+export interface MovieArray {
+    movies: Array<any>
 }

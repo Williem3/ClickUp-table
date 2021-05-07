@@ -13,5 +13,5 @@ export const loadMovies = createAction(MovieActionTypes.LoadMovies);
 export const loadMoviesFailed = createAction(MovieActionTypes.LoadMoviesFailure);
 export const loadMoviesSuccessful = createAction(
     MovieActionTypes.LoadMoviesSuccess,
-    props<{Movies: Movie}>()
+    props<{movies: Movie}>()
 );
