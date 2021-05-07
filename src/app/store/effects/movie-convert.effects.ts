@@ -19,31 +19,31 @@ export class MovieConvertEffects {
         private movieStore: Store<{movieState: Movie}>
     ) {}
 
-    convertToArray$ = createEffect(() => {
-        this.actions$.pipe(
-            ofType(MovieConvertActions.movieConvertActionTypes.ConvertToArray),
-            withLatestFrom(this.movieStore.select((state) => state.movieState.results)),
-            mergeMap((data) => {
-                return selectFeature(data).pipe(
-                    map((movies: Array<any>) => {
-                        return MovieConvertActions.convertSuccess({movieTable: movies})
-                    }),
-                    catchError(() => MovieConvertActions.convertFailure)
-                )
-            })
-        )
-    });
+    // convertToArray$ = createEffect(() => {
+    //     this.actions$.pipe(
+    //         ofType(MovieConvertActions.movieConvertActionTypes.ConvertToArray),
+    //         withLatestFrom(this.movieStore.select((state) => state.movieState.results)),
+    //         mergeMap((data) => {
+    //             return selectFeature(data).pipe(
+    //                 map((movies: Array<any>) => {
+    //                     return MovieConvertActions.convertSuccess({movieTable: movies})
+    //                 }),
+    //                 catchError(() => MovieConvertActions.convertFailure)
+    //             )
+    //         })
+    //     )
+    // });
 
 
-    conversion(data) {
-        let arr = []
-        for (let i = 0; i < data.length; i++) {
-            arr.push(data[i].original_title);
-        }
-        console.log(arr);
-        this.movieArrArr$.push(arr);
-        return this.movieArrArr$;
-    }
+    // conversion(data) {
+    //     let arr = []
+    //     for (let i = 0; i < data.length; i++) {
+    //         arr.push(data[i].original_title);
+    //     }
+    //     console.log(arr);
+    //     this.movieArrArr$.push(arr);
+    //     return this.movieArrArr$;
+    // }
 
 }
 
