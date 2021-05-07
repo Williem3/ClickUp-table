@@ -18,6 +18,7 @@ export class TableComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number;
   displaySecondList: boolean = false;
+  searchCritera: number = 0;
 
   table: any[] = [
     {title: 'Name'},
