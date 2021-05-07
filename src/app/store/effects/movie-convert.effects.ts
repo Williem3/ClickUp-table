@@ -1,15 +1,16 @@
-import {map, mergeMap} from 'rxjs/operators';
+import { map, mergeMap, catchError, withLatestFrom } from 'rxjs/operators';
 import * as MovieConvertActions from './../actions/movie-convert.actions';
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {MovieService} from 'src/app/services/movie.service';
 import {MovieResults, Movie} from 'src/app/types/movie.interface';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class MovieConvertEffects {
-    movieArray$: Array<any> = [];
     movieArrArr$: Array<any> = [];
+    movie: any;
 
     constructor(
         private actions$: Actions,
@@ -19,36 +20,30 @@ export class MovieConvertEffects {
     ) {}
 
     convertToArray$ = createEffect(() => {
-        console.log('testing 1');
-        return this.actions$.pipe(
+        this.actions$.pipe(
             ofType(MovieConvertActions.movieConvertActionTypes.ConvertToArray),
-            mergeMap(() => {
-                return this.movieStore
-                    .select((state) => state.movieState)
-                    .pipe(
-                        map((data: any) => {
-                            // console.log(data.movies.results[0])
-                            let objectArr = []
-                            for (let i = 0; i < data.movies.results; i++) {
-                                if (Object.keys(data.movies.results[i]).includes( 'original_title')) {
-                                    objectArr.push();
-                                }
-                            }
-                            console.log(this.movieArray$);
-                            return MovieConvertActions.convertSuccess({
-                                movieTable: this.movieArray$,
-                            });
-                        })
-                    );
+            withLatestFrom(this.movieStore.select((state) => state.movieState.results)),
+            mergeMap((data) => {
+                return selectFeature(data).pipe(
+                    map((movies: Array<any>) => {
+                        return MovieConvertActions.convertSuccess({movieTable: movies})
+                    }),
+                    catchError(() => MovieConvertActions.convertFailure)
+                )
             })
-        );
+        )
     });
 
-    getStore() {
-        this.movieStore
-            .select((state) => state.movieState)
-            .subscribe((data: Movie) => {
-                this.movieArray$ = data.movies.results;
-            });
+
+    conversion(data) {
+        let arr = []
+        for (let i = 0; i < data.length; i++) {
+            arr.push(data[i].original_title);
+        }
+        console.log(arr);
+        this.movieArrArr$.push(arr);
+        return this.movieArrArr$;
     }
+
 }
+
