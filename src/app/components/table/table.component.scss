@@ -3,13 +3,8 @@
 }
 
 .dark {
-
     background: rgb(202, 202, 202);
 }
-
-
-
-
 
 .tableArea {
     display: flex;
@@ -19,8 +14,8 @@
     flex-direction: column;
     background-color: white;
     -webkit-box-shadow: 3px 4px 9px 0px rgba(50, 50, 50, 0.61);
-    -moz-box-shadow:    3px 4px 9px 0px rgba(50, 50, 50, 0.61);
-    box-shadow:         3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+    -moz-box-shadow: 3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+    box-shadow: 3px 4px 9px 0px rgba(50, 50, 50, 0.61);
     .table {
         table-layout: fixed;
         tr th {
@@ -28,7 +23,7 @@
             border-bottom: 1px solid rgb(128, 128, 128);
             text-align: left;
             padding: 1em;
-            color: white;
+            color: yellow;
             background: rgb(44, 44, 44);
             font-weight: 400;
         }
@@ -42,7 +37,6 @@
         tr th:last-of-type {
             border-top-right-radius: 0.5em;
         }
-    
 
         .row {
             height: 3em;
@@ -64,13 +58,31 @@
 .paginate {
     display: flex;
     justify-content: space-between;
-    margin: 1em 0 0;
+
+    button {
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 0.5em;
+        background: yellow;
+        margin: 0.5em;
+        -webkit-box-shadow: 3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+        -moz-box-shadow: 3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+        box-shadow: 3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+        transition: 0.1s ease-out;
+    }
+    button:hover {
+        background: rgb(177, 177, 0);
+    }
+    button:active {
+        -webkit-box-shadow: 1px 2px 5px 0px rgba(50, 50, 50, 0.61);
+        -moz-box-shadow: 1px 2px 5px 0px rgba(50, 50, 50, 0.61);
+        box-shadow: 1px 2px 5px 0px rgba(50, 50, 50, 0.61);
+    }
 }
 
 @media (min-width: 600px) {
     .tableArea {
         max-width: 600px;
-
 
         .table {
             .row {

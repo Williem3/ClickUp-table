@@ -1,4 +1,4 @@
-<section class="tableArea">
+<!-- <section class="tableArea">
     <table class="table" border="0" cellspacing="0" cellpadding="0" 
     cdkDropList [cdkDropListData]="this.moviesInArray  " cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
         <tr>
@@ -55,4 +55,21 @@
 
 
 </section>
+ -->
+<input type="text" placeholder="Search..." />
 
+<table class="tableContainer">
+    <tr class="table headers">
+        <th *ngFor="let header of tableHeaders">{{header}}</th>
+    </tr>
+
+    <tr *ngFor="let movie of movieArray$">
+        <td>{{movie.original_title}}</td>
+        <td>{{movie.release_date}}</td>
+        <td>{{movie.original_language}}</td>
+        <td>{{movie.vote_average}}</td>
+    </tr>
+</table>
+
+<button (click)="onPrevious()">Previous</button>
+<button (click)="onNext()">Next</button>

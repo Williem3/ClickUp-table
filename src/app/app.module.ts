@@ -8,21 +8,33 @@ import { TableComponent } from './components/table/table.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromMovie from './store/reducer/movie.reducer';
+import * as fromMoviePage from './store/reducer/movie-page.reducer';
+import { MovieEffects } from './store/effects/movie.effects';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MovieListComponent,
-    TableComponent
-  ],
-  imports: [
-    BrowserModule,
-    DragDropModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, MovieListComponent, TableComponent],
+    imports: [
+        BrowserModule,
+        DragDropModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        HttpClientModule,
+        StoreModule.forRoot({
+            movieState: fromMovie.reducer,
+            moviePageCounter: fromMoviePage.reducer,
+        }),
+        EffectsModule.forRoot([MovieEffects]),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: environment.production,
+        }),
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
