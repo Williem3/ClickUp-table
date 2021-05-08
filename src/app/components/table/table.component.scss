@@ -64,8 +64,20 @@
 .paginate {
     display: flex;
     justify-content: space-between;
-    margin: 1em 0 0;
+    button {
+        padding: 0em 1em;
+        border: none;
+        background: none;
+        transition: 0.2s ease-in;
+    }
+
+    button:hover {
+        -webkit-box-shadow: -3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+        -moz-box-shadow:    -3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+        box-shadow:         -3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+    }
 }
+
 
 @media (min-width: 600px) {
     .tableArea {
