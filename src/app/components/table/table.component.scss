@@ -14,7 +14,7 @@
 .tableArea {
     display: flex;
     width: 95%;
-    margin: 2em auto;
+    margin: 0.5em auto;
     border-radius: 0.5em;
     flex-direction: column;
     background-color: white;
@@ -23,8 +23,9 @@
     box-shadow:         3px 4px 9px 0px rgba(50, 50, 50, 0.61);
     .table {
         table-layout: fixed;
+        width: 100%;
         tr th {
-            font-size: 1em;
+            font-size: 0.9em;
             border-bottom: 1px solid rgb(128, 128, 128);
             text-align: left;
             padding: 1em;
@@ -50,7 +51,7 @@
             color: rgb(53, 53, 53);
             td {
                 border-bottom: 1px solid rgb(189, 189, 189);
-                width: 25%;
+                width: auto;
                 height: 3em;
                 padding: 1em;
             }
@@ -65,7 +66,6 @@
     display: flex;
     justify-content: space-between;
     button {
-        padding: 0em 1em;
         border: none;
         background: none;
         transition: 0.2s ease-in;
@@ -75,6 +75,11 @@
         -webkit-box-shadow: -3px 4px 9px 0px rgba(50, 50, 50, 0.61);
         -moz-box-shadow:    -3px 4px 9px 0px rgba(50, 50, 50, 0.61);
         box-shadow:         -3px 4px 9px 0px rgba(50, 50, 50, 0.61);
+    }
+
+    .backSection { 
+    }
+    .forwardSection {
     }
 }
 
